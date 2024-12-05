@@ -1,5 +1,13 @@
 - Ubuntu Server 24 Minimized
 - User `ubuntu:ubuntu`
+
+## References
+- https://medium.com/@mojabi.rafi/create-a-kubernetes-cluster-using-virtualbox-and-without-vagrant-90a14d791617
+- https://kevinhoffman.medium.com/building-a-kubernetes-cluster-in-virtualbox-with-ubuntu-22cd338846dd
+- https://www.profiq.com/kubernetes-cluster-setup-using-virtual-machines/
+- https://errindam.medium.com/taming-kubernetes-for-fun-and-profit-60a1d7b353de
+
+## See also
 - https://rook.io/docs/rook/latest-release/Getting-Started/Prerequisites/prerequisites/#ceph-prerequisites
 
 ## Base image

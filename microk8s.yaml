@@ -1,0 +1,38 @@
+- name: Install microk8s
+  hosts: [masters, workers]
+  become: yes
+  tasks:
+    - name: Install from snap
+      community.general.snap:
+        classic: true
+        channel: 1.29/stable
+        name:
+          - microk8s
+    - name: Wait ready
+      command: microk8s status --wait-ready
+    - name: Enable dns
+      command: microk8s enable dns
+    - name: Enable ingress
+      command: microk8s enable ingress
+    # - name: Enable cert-manager
+    #   command: microk8s enable cert-manager
+    # - name: Enable hostpath-storage
+    #   command: microk8s enable hostpath-storage
+
+- name: Masters join cluster
+  hosts: [masters, "!{{ groups['masters'][0] }}"]
+  become: yes
+  tasks:
+    - command: microk8s add-node
+      delegate_to: "{{ groups['masters'][0] }}"
+      register: add_node
+    - command: "{{ add_node.stdout_lines | last }}"
+
+- name: Workers join cluster
+  hosts: [workers]
+  become: yes
+  tasks:
+    - command: microk8s add-node
+      delegate_to: "{{ groups['masters'][0] }}"
+      register: add_node
+    - command: "{{ add_node.stdout_lines | last }} --worker"

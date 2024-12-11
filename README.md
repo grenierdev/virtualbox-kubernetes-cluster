@@ -11,15 +11,15 @@ vagrant up
 Export the ssh config
 
 ```sh
-vagrant ssh-config master01.k8s.local >> ./inventory/ssh_config
-vagrant ssh-config worker01.k8s.local >> ./inventory/ssh_config
-vagrant ssh-config worker02.k8s.local >> ./inventory/ssh_config
-vagrant ssh-config worker03.k8s.local >> ./inventory/ssh_config
-vagrant ssh-config nfs01.k8s.local >> ./inventory/ssh_config
+vagrant ssh-config master01.grenier.local >> ./ssh_config
+vagrant ssh-config worker01.grenier.local >> ./ssh_config
+vagrant ssh-config worker02.grenier.local >> ./ssh_config
+vagrant ssh-config worker03.grenier.local >> ./ssh_config
+vagrant ssh-config nfs01.grenier.local >> ./ssh_config
 ```
 
 ## Configure
 
 ```sh
-ansible-playbook ./playbooks/setup.yaml -i ./inventory/hosts.yaml
+ansible-playbook ./microk8s.yaml -i ./hosts.yaml
 ```

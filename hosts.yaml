@@ -11,9 +11,9 @@ workers:
       ansible_ssh_common_args: '-F ssh_config'
 nfs:
   hosts:
-    # nfs[01:01].grenier.local:
-    #   ansible_ssh_user: vagrant
-    #   ansible_ssh_common_args: '-F ssh_config'
+    nfs[01:01].grenier.local:
+      ansible_ssh_user: vagrant
+      ansible_ssh_common_args: '-F ssh_config'
 cluster:
   children:
     masters:

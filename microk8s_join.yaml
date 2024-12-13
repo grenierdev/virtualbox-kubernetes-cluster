@@ -1,0 +1,27 @@
+- name: Masters join cluster
+  hosts: [masters, "!{{ groups['masters'][0] }}"]
+  become: yes
+  serial: 1
+  tasks:
+    - name: Get node join command
+      command: microk8s add-node
+      delegate_to: "{{ groups['masters'][0] }}"
+      register: add_node
+    - debug:
+        var: "{{ add_node.stdout_lines | last }}"
+    - name: Join cluster
+      command: "{{ add_node.stdout_lines | last }}"
+
+- name: Workers join cluster
+  hosts: [workers]
+  become: yes
+  serial: 1
+  tasks:
+    - name: Get node join command
+      command: microk8s add-node
+      delegate_to: "{{ groups['masters'][0] }}"
+      register: add_node
+    - debug:
+        var: "{{ add_node.stdout_lines | last }}"
+    - name: Join cluster
+      command: "{{ add_node.stdout_lines | last }} --worker"

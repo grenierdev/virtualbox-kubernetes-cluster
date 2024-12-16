@@ -1,14 +1,14 @@
 masters:
   hosts:
-    master[01:01].grenier.local:
+    master[01:03].grenier.local:
   vars:
     ansible_ssh_user: vagrant
     ansible_ssh_common_args: '-F ssh_config'
 workers:
   hosts:
-    worker[01:03].grenier.local:
-      ansible_ssh_user: vagrant
-      ansible_ssh_common_args: '-F ssh_config'
+    # worker[01:02].grenier.local:
+    #   ansible_ssh_user: vagrant
+    #   ansible_ssh_common_args: '-F ssh_config'
 nfs:
   hosts:
     nfs[01:01].grenier.local:

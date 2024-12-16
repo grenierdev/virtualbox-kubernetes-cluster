@@ -1,13 +1,14 @@
-prefix = "192.168.56."
+prefix = "192.168.1."
 
 masters = [
   ["master01", 10],
+  ["master02", 11],
+  ["master03", 12],
 ]
 
 workers = [
-  ["worker01", 20],
-  ["worker02", 21],
-  ["worker03", 22],
+  # ["worker01", 20],
+  # ["worker02", 21],
 ]
 
 nfs = [
@@ -50,7 +51,7 @@ Vagrant.configure("2") do |config|
   nfs.each do |data|
     config.vm.define name="#{data[0]}.grenier.local" do |h|
       h.vm.hostname = name
-      h.vm.disk :disk, size: "100GB", primary: true
+      h.vm.disk :disk, size: "100GB", name: "data"
       h.vm.network "public_network", ip: "#{prefix}#{data[1]}", hostname: true
       h.vm.provider "virtualbox" do |vb|
         vb.name = name

@@ -5,15 +5,13 @@
     - name: Install from snap
       community.general.snap:
         classic: true
-        channel: 1.32
+        channel: latest/stable
         name:
           - microk8s
     - name: Wait ready
       command: microk8s status --wait-ready
-    - name: Disable HA
-      command: microk8s disable ha-cluster --force
-    # - name: Enable dns
-    #   command: microk8s enable dns
+    - name: Enable dns
+      command: microk8s enable dns
     # - name: Enable ingress
     #   command: microk8s enable ingress
     # - name: Enable cert-manager

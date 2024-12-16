@@ -7,8 +7,6 @@
       command: microk8s add-node
       delegate_to: "{{ groups['masters'][0] }}"
       register: add_node
-    - debug:
-        var: "{{ add_node.stdout_lines | last }}"
     - name: Join cluster
       command: "{{ add_node.stdout_lines | last }}"
 

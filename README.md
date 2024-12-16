@@ -48,3 +48,14 @@ kubectl apply -f whoami.yaml
 
 kubectl create ingress whoami-via-cf-tunnel --rule="<you're favorite domain>/*=whoami:80" --class cloudflare-tunnel
 ```
+
+
+# Kubernetes on Windows Server 2025 Standard
+
+https://microk8s.io/docs/add-a-windows-worker-node-to-microk8s
+
+```
+notepad 'C:\Program Files\containerd\config.toml'
+# sandbox_image = "rancher/pause:3.6-windows-ltsc2022-amd64"
+
+```

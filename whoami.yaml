@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: whoami
 spec:
-  replicas: 4
+  replicas: 1
   selector:
     matchLabels:
       app: whoami
@@ -12,6 +12,8 @@ spec:
       labels:
         app: whoami
     spec:
+      nodeSelector:
+        kubernetes.io/os: linux
       containers:
       - name: whoami
         image: traefik/whoami
